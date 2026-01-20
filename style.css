@@ -1,0 +1,318 @@
+.upside-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: #111;
+  color: #e53935;
+  border: 1px solid #e53935;
+  font-family: 'Special Elite', cursive;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upside-toggle:hover {
+  background: #e53935;
+  color: #111;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #e8dcc7; /* beige wall */
+  font-family: 'Special Elite', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room {
+  width: 1000px;
+  max-width: 95%;
+  padding: 40px 20px 80px;
+  position: relative;
+}
+
+/* LIGHT WIRES */
+.wire {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #222;
+  border-radius: 2px;
+}
+
+.wire1 { top: 40px; transform: rotate(-2deg); }
+.wire2 { top: 120px; transform: rotate(1.5deg); }
+.wire3 { top: 200px; transform: rotate(-1deg); }
+
+/* WALL GRID */
+.wall {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 35px 10px;
+  justify-items: center;
+}
+
+/* LETTER BLOCK */
+.letter {
+  position: relative;
+  width: 70px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* BULB */
+.bulb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 0 auto 6px;
+  background: #555;
+  opacity: 0.4; /* mostly off */
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  animation: flicker 6s infinite;
+  transition: 0.3s;
+}
+
+/* RANDOM COLORS */
+.letter:nth-child(3n) .bulb { background: #ff4d4d; }
+.letter:nth-child(3n+1) .bulb { background: #4dd2ff; }
+.letter:nth-child(3n+2) .bulb { background: #ffd24d; }
+
+/* LETTER */
+.letter span {
+  font-size: 42px;
+  color: #111;
+  letter-spacing: 4px;
+}
+
+/* HOVER = POWER ON */
+.letter:hover .bulb {
+  opacity: 1;
+  box-shadow:
+    0 0 10px currentColor,
+    0 0 25px currentColor,
+    0 0 50px currentColor,
+    0 0 80px currentColor;
+  transform: scale(1.3);
+}
+
+/* FLICKER ANIMATION */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  3% { opacity: 0.4; }
+  6% { opacity: 1; }
+  7% { opacity: 0.3; }
+  8% { opacity: 1; }
+  70% { opacity: 1; }
+  72% { opacity: 0.5; }
+  74% { opacity: 1; }
+}
+
+/* PROJECT TEXT */
+.project-display {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: #111;
+}
+
+/* WALL GLOW PROJECTION */
+.letter::after {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255,200,120,0.6), transparent 70%);
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.letter:hover::after {
+  opacity: 1;
+}
+
+/* DIM EVERYTHING WHEN ONE IS ACTIVE */
+.wall.has-active .letter {
+  opacity: 0.25;
+  filter: grayscale(40%);
+  transition: 0.3s;
+}
+
+/* KEEP ACTIVE ONE BRIGHT */
+.wall.has-active .letter.active {
+  opacity: 1;
+  filter: none;
+}
+
+/* EVEN STRONGER GLOW FOR ACTIVE */
+.wall.has-active .letter.active .bulb {
+  opacity: 1;
+  box-shadow:
+    0 0 15px currentColor,
+    0 0 35px currentColor,
+    0 0 70px currentColor,
+    0 0 120px currentColor;
+  transform: scale(1.4);
+}
+
+/* STRONGER WALL PROJECTION */
+.wall.has-active .letter.active::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.3);
+}
+
+/* ===== MODAL ===== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: #f2e6d2;
+  padding: 30px 40px;
+  max-width: 500px;
+  width: 90%;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: modalPop 0.3s ease;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal h2 {
+  margin-top: 0;
+  letter-spacing: 2px;
+}
+
+.modal p {
+  line-height: 1.6;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* =========================
+   UPSIDE DOWN MODE
+========================= */
+
+body.upside-down {
+  background: #0b0000;
+}
+
+/* Darken & redden the room */
+body.upside-down .room {
+  filter: brightness(0.7) contrast(1.2);
+}
+
+/* Red fog overlay */
+body.upside-down::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(120,0,0,0.25), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(180,0,0,0.25), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(100,0,0,0.2), transparent 60%);
+  pointer-events: none;
+  z-index: 500;
+  animation: fogMove 12s ease-in-out infinite alternate;
+}
+
+/* Make wall darker */
+body.upside-down .room {
+  background: transparent;
+}
+
+/* Change bulb vibe */
+body.upside-down .bulb {
+  opacity: 0.6;
+  filter: hue-rotate(-40deg) saturate(1.5);
+}
+
+/* Active bulb = BLOOD RED */
+body.upside-down .wall.has-active .letter.active .bulb {
+  box-shadow:
+    0 0 20px #ff1a1a,
+    0 0 40px #ff1a1a,
+    0 0 80px #ff1a1a,
+    0 0 140px #ff1a1a;
+}
+
+/* Letters glow red */
+body.upside-down .letter:hover span {
+  color: #ffb3b3;
+  text-shadow:
+    0 0 10px #ff1a1a,
+    0 0 30px #ff1a1a;
+}
+
+/* Wall projection becomes red */
+body.upside-down .letter::after {
+  background: radial-gradient(circle, rgba(255,0,0,0.6), transparent 70%);
+}
+
+/* Subtle world breathing */
+body.upside-down .room {
+  animation: worldPulse 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fogMove {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-30px); }
+}
+
+@keyframes worldPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+}
+
+/* Upside Down hover text glow */
+body.upside-down .project-display {
+  color: #ffb3b3;
+  text-shadow:
+    0 0 10px #ff1a1a,
+    0 0 25px #ff1a1a,
+    0 0 50px rgba(255, 0, 0, 0.6);
+  transition: 0.3s;
+}

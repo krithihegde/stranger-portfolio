@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Krithi's Upside Down Portfolio</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="upside-toggle" id="upsideToggle">
+        Enter the Upside Down
+    </button>
+
+
+  <div class="room">
+
+    <!-- WIRES -->
+    <div class="wire wire1"></div>
+    <div class="wire wire2"></div>
+    <div class="wire wire3"></div>
+
+    <!-- WALL -->
+    <div class="wall">
+
+      <div class="letter" data-project="A — Analytics & Market Research">
+        <div class="bulb"></div>
+        <span>A</span>
+      </div>
+
+      <div class="letter" data-project="B — Brand Strategy & Content">
+        <div class="bulb"></div>
+        <span>B</span>
+      </div>
+
+      <div class="letter" data-project="C — Consumer Psychology">
+        <div class="bulb"></div>
+        <span>C</span>
+      </div>
+
+      <div class="letter" data-project="D — Demand Generation">
+        <div class="bulb"></div>
+        <span>D</span>
+      </div>
+
+      <div class="letter" data-project="E — Experiments & A/B Testing">
+        <div class="bulb"></div>
+        <span>E</span>
+      </div>
+
+      <div class="letter" data-project="F — Funnels & Journey Design">
+        <div class="bulb"></div>
+        <span>F</span>
+      </div>
+
+      <div class="letter" data-project="G — Growth Strategy">
+        <div class="bulb"></div>
+        <span>G</span>
+      </div>
+
+      <div class="letter" data-project="H — Human Insights">
+        <div class="bulb"></div>
+        <span>H</span>
+      </div>
+
+      <div class="letter" data-project="I — Insights & Storytelling">
+        <div class="bulb"></div>
+        <span>I</span>
+      </div>
+
+      <div class="letter" data-project="J — Journeys & UX Thinking">
+        <div class="bulb"></div>
+        <span>J</span>
+      </div>
+
+      <div class="letter" data-project="K — Knowledge Systems">
+        <div class="bulb"></div>
+        <span>K</span>
+      </div>
+
+      <div class="letter" data-project="L — Leads & Demand Ops">
+        <div class="bulb"></div>
+        <span>L</span>
+      </div>
+
+      <div class="letter" data-project="M — Messaging & Positioning">
+        <div class="bulb"></div>
+        <span>M</span>
+      </div>
+
+      <div class="letter" data-project="N — Narratives & Brand Voice">
+        <div class="bulb"></div>
+        <span>N</span>
+      </div>
+
+      <div class="letter" data-project="O — Optimisation & CRO">
+        <div class="bulb"></div>
+        <span>O</span>
+      </div>
+
+      <div class="letter" data-project="P — Product Marketing">
+        <div class="bulb"></div>
+        <span>P</span>
+      </div>
+
+      <div class="letter" data-project="Q — Qualitative Research">
+        <div class="bulb"></div>
+        <span>Q</span>
+      </div>
+
+      <div class="letter" data-project="R — Research & Strategy">
+        <div class="bulb"></div>
+        <span>R</span>
+      </div>
+
+    </div>
+
+    <!-- PROJECT TEXT -->
+   <div class="project-display" id="projectDisplay">
+  Hover over a letter...
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+
+    <button class="close-btn" id="closeModal">✕</button>
+
+    <h2 id="modalTitle">Project Title</h2>
+    <p id="modalDescription">Project description goes here</p>
+
+    <div class="meta">
+        <p><strong>Role:</strong> <span id="modalRole"></span></p>
+        <p><strong>Tools:</strong> <span id="modalTools"></span></p>
+        <p><strong>Proof:</strong> <span id="modalProof"></span></p>
+    </div>
+
+
+  </div>
+</div>
+
+
+  </div>
+    <!-- SOUNDS -->
+    <audio id="soundClick" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="soundHum" src="sounds/hum.mp3" preload="auto" loop></audio>
+    <audio id="soundPortal" src="sounds/portal.mp3" preload="auto"></audio>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
